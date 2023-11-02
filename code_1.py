@@ -11,15 +11,16 @@ else:
 
 
 
-minimum_downpayment_percentage = (minimum_downpayment / house_price * 100) 
-minimum_downpayment_percentage = float(input(f"Enter down payment percentage (minimum {round(minimum_downpayment_percentage, 3)}): "))
-print(f"Down payment amount is ${minimum_downpayment_percentage}") 
+downpayment_percentage = (minimum_downpayment / house_price * 100) 
+downpayment = ((float(input(f"Enter down payment percentage (minimum {downpayment_percentage:.3f}): ")) / 100) * house_price) 
 
-if minimum_downpayment_percentage < 10: 
+print(f"Down payment amount is ${downpayment}") 
+
+if downpayment_percentage < 10: 
     insurance_premium = 0.04
-elif minimum_downpayment_percentage < 15:
+elif downpayment_percentage < 15:
     insurance_premium = 0.031
-elif minimum_downpayment_percentage < 20:
+elif downpayment_percentage < 20:
     insurance_premium = 0.028
 else:
     insurance_premium = 0
