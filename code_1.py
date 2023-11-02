@@ -40,7 +40,7 @@ amortization_period = int(input("Enter mortgage amortization period (5, 10, 15, 
 
 while amortization_period not in (5, 10, 15, 20, 25):
     print ("That is not a acceptable Amortization Period, please select one of the following: 5, 10, 15, 20, 25")
-    amortization_period = int(input("What is the amortization period you want?(5, 10, 15, 20, 25)"))
+    amortization_period = int(input("What is the amortization period you want?(5, 10, 15, 20, 25): "))
 
 if amortization_period == 5:
     mortgage_term = 1
@@ -66,6 +66,35 @@ monthly_payment = "{:2f}".format(principal * ((EMR * ((1 + EMR)**months))/ (((1 
 
 print(f"Interest rate for thr term will be {EMR}%")
 print(f"Monthly payment amount is: ${monthly_payment}")
+
+months = 12 * amortization_period
+
+# Calculate monthly payment
+monthly_payment = principal * (EMR * (1 + EMR) ** months) / ((1 + EMR) ** months - 1)
+
+print(f"Interest rate for the term will be {EMR * 100:.2f}%")
+print(f"Monthly payment amount is: ${monthly_payment:.2f}")
+
+# Calculate and print the amortization schedule
+print("             \nAmortization Schedule:")
+print("Month  Opening Balance  Monthly Payment  Monthly Principal  Monthly Interest  Closing Balance")
+
+opening_balance = principal
+for month in range(1, months + 1):
+    monthly_interest = opening_balance * EMR
+    monthly_principal = monthly_payment - monthly_interest
+    closing_balance = opening_balance - monthly_principal
+    
+    print(f"{month:3}  ${opening_balance:.2f}  ${monthly_payment:.2f}  ${monthly_principal:.2f}  ${monthly_interest:.2f}  ${closing_balance:.2f}")
+    
+    opening_balance = closing_balance
+
+
+
+
+
+
+
 #print (f"Effective Monthly Rate / Monthly Payment: {EMR} / {monthly_payment}")
 # print (name)
 # print (f"Minimum Downpayment / Percentage of House Price: {minimum_downpayment} / {minimum_downpayment_percentage}")
