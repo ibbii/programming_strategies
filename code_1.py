@@ -1,4 +1,7 @@
-house_price = float(input("What is the price of the house you are planning on purchasing?"))
+name = input("Enter client name: ")
+address = input("Enter address of property: ")
+house_price = float(input("Enter purchase price: "))
+minimum_downpayment_percentage = float(input("Enter down payment percentage (minimum 5.000): "))
 
 if house_price <= 500000:
     minimum_downpayment = house_price * 0.05
@@ -7,7 +10,8 @@ elif house_price <= 1000000:
 else: 
     minimum_downpayment = house_price * 0.2
 
-minimum_downpayment_percentage = minimum_downpayment / house_price
+minimum_downpayment_percentage = (minimum_downpayment * house_price) 
+print(f"Down payment amount is ${minimum_downpayment_percentage}") 
 
 if minimum_downpayment_percentage < 0.1: 
     insurance_premium = 0.04
@@ -19,10 +23,18 @@ else:
     insurance_premium = 0
 
 insurance_cost = (house_price - minimum_downpayment) * insurance_premium 
+print(f"Mortgage insurance price is {insurance_cost}")
 
 principal = house_price - minimum_downpayment + insurance_cost
+print(f"Total mortgage amount is ${principal}")
 
-amortization_period = int(input("What is the amortization period you want?(5, 10, 15, 20, 25)"))
+mortgage_term = int(input("Enter mortgage term (1, 2, 3, 5, 10): "))
+
+while mortgage_term not in (1, 2, 3, 5, 10):
+    print ("That is not a acceptable mortgage term, please select one of the following: 1, 2, 3, 5, 10")
+    mortgage_term = int(input("Enter mortgage term (1, 2, 3, 5, 10):"))
+
+amortization_period = int(input("Enter mortgage amortization period (5, 10, 15, 20, 25)"))
 
 while amortization_period not in (5, 10, 15, 20, 25):
     print ("That is not a acceptable Amortization Period, please select one of the following: 5, 10, 15, 20, 25")
@@ -48,10 +60,12 @@ EMR = ((1 + (mortgage_rate / 2))**2)**(1/12) - 1
 
 months = 12* amortization_period 
 
-monthly_payment = principal * ((EMR * ((1 + EMR)**months))/ (((1 + EMR)**months) - 1))
+monthly_payment = "{:2f}".format(principal * ((EMR * ((1 + EMR)**months))/ (((1 + EMR)**months) - 1)))
 
-print (f"House price: {house_price}") 
-print (f"Minimum Downpayment / Percentage of House Price: {minimum_downpayment} / {minimum_downpayment_percentage}")
-print (f"Insurance Premium / Insurance Cost: {insurance_premium} / {insurance_cost}")
-print (f"Principal Amount: {principal}") 
-print (f"Effective Monthly Rate / Monthly Payment: {EMR} / {monthly_payment}")
+print(f"Interest rate for thr term will be {EMR}%")
+print(f"Monthly payment amount is: ${monthly_payment}")
+#print (f"Effective Monthly Rate / Monthly Payment: {EMR} / {monthly_payment}")
+# print (name)
+# print (f"Minimum Downpayment / Percentage of House Price: {minimum_downpayment} / {minimum_downpayment_percentage}")
+# print (f"Insurance Premium / Insurance Cost: {insurance_premium} / {insurance_cost}")
+# print (f"Principal Amount: {principal}") 
