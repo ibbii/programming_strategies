@@ -1,0 +1,48 @@
+house_price = user input as a number 
+
+if house_price <= 500000
+    minimum_downpayment = house_price * 0.05
+elseif house price is <= 1000000
+    minimum_downpayment = (500000 * 0.05) + ((house_price - 500000) * 0.1) 
+else 
+    minimum_downpayment = house_price * 0.2
+
+minimum_downpayment_percentage = minimum_downpayment / house_price
+
+
+if minimum_downpayment percentage < 0.1 
+    insurance_premium = 0.04
+elseif minimum_downpayment_percentage < 0.15
+    insurance_premium = 0.031
+elseif minimum_downpayment_percentage < 0.2
+    insurance_premium = 0.028
+else 
+    insurance premium = 0
+
+insurance_cost = (house_price - minimum_downpayment) * insurance_premium 
+
+principal = house_price - minimum_downpayment + insurance_cost
+
+amortization_period = user input # 5, 10, 15, 20, 25
+
+if amortization_period == 5
+    mortgage-term = 1
+    mortgage_rate = 0.0595
+elseif amortization period ==10 
+    mortgage-term = 2
+    mortgage_rate = 0.059
+elseif amortization period ==15
+    mortgage-term = 3
+    mortgage_rate = 0.056
+elseif amortization period ==20 
+    mortgage-term = 5
+    mortgage_rate = 0.0529
+else
+    mortgage-term = 10
+    mortgage_rate = 0.06
+
+EMR = ((1 + (mortgage_rate / 2))^2)^ (1/12) - 1
+
+months = 12* amortization_period 
+
+monthly_payment = principal * ((EMR * ((1 + EMR)^months))/((1 + EMR)^ months) -1)
