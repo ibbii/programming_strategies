@@ -77,14 +77,7 @@ monthly_payment = principal * (EMR * (1 + EMR) ** months) / ((1 + EMR) ** months
 print(f"Interest rate for the term will be {EMR * 100:.2f}%")
 print(f"Monthly payment amount is: ${monthly_payment:.2f}")
 
-<<<<<<< HEAD
 # Calculate and print the amortization schedule
-=======
-amort_schedule = input("Would you like to see the amortization schedule? (Y/N): ").upper()
-if amort_schedule == "Y":
-    print("             \nAmortization Schedule:") # Calculate and print the amortization schedule
-    print("Month  Opening Balance  Monthly Payment  Monthly Principal  Monthly Interest  Closing Balance")
->>>>>>> 48b73b009ba14103e64af7d282124a882c8550a0
 
 amort_schedule = input("Would you like to see the amortization schedule? (Y/N): ").upper()
 if amort_schedule == "Y":
@@ -101,10 +94,6 @@ for month in range(1, months + 1):
     opening_balance = closing_balance
 else:
     print("Thank you, goodbye")
-<<<<<<< HEAD
-
-=======
->>>>>>> 48b73b009ba14103e64af7d282124a882c8550a0
 
 
 
