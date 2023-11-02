@@ -1,7 +1,6 @@
 name = input("Enter client name: ")
 address = input("Enter address of property: ")
 house_price = float(input("Enter purchase price: "))
-minimum_downpayment_percentage = float(input("Enter down payment percentage (minimum 5.000): "))
 
 if house_price <= 500000:
     minimum_downpayment = house_price * 0.05
@@ -10,14 +9,17 @@ elif house_price <= 1000000:
 else: 
     minimum_downpayment = house_price * 0.2
 
-minimum_downpayment_percentage = (minimum_downpayment * house_price) 
+
+
+minimum_downpayment_percentage = (minimum_downpayment / house_price * 100) 
+minimum_downpayment_percentage = float(input(f"Enter down payment percentage (minimum {round(minimum_downpayment_percentage, 3)}): "))
 print(f"Down payment amount is ${minimum_downpayment_percentage}") 
 
-if minimum_downpayment_percentage < 0.1: 
+if minimum_downpayment_percentage < 10: 
     insurance_premium = 0.04
-elif minimum_downpayment_percentage < 0.15:
+elif minimum_downpayment_percentage < 15:
     insurance_premium = 0.031
-elif minimum_downpayment_percentage < 0.2:
+elif minimum_downpayment_percentage < 20:
     insurance_premium = 0.028
 else:
     insurance_premium = 0
