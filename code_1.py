@@ -11,25 +11,24 @@ else:
 
 
 
-minimum_downpayment_percentage = (minimum_downpayment / house_price * 100) 
-downpayment_percentage = float(input(f"Enter down payment percentage (minimum {minimum_downpayment_percentage:.3f}): "))
-downpayment = (downpayment_percentage / 100) * house_price 
+downpayment_percentage = (minimum_downpayment / house_price * 100) 
+downpayment = ((float(input(f"Enter down payment percentage (minimum {downpayment_percentage:.3f}): ")) / 100) * house_price) 
 
 print(f"Down payment amount is ${downpayment}") 
 
 if downpayment_percentage < 10: 
-    insurance_premium = 4
-elif downpayment_percentage < 14:
-    insurance_premium = 3.1
-elif downpayment_percentage < 19:
-    insurance_premium = 2.8
+    insurance_premium = 0.04
+elif downpayment_percentage < 15:
+    insurance_premium = 0.031
+elif downpayment_percentage < 20:
+    insurance_premium = 0.028
 else:
     insurance_premium = 0
 
-insurance_cost = (house_price - downpayment) * (insurance_premium / 100) 
+insurance_cost = (house_price - minimum_downpayment) * insurance_premium 
 print(f"Mortgage insurance price is {insurance_cost}")
 
-principal = house_price - downpayment + insurance_cost
+principal = house_price - minimum_downpayment + insurance_cost
 print(f"Total mortgage amount is ${principal}")
 
 mortgage_term = int(input("Enter mortgage term (1, 2, 3, 5, 10): "))
@@ -77,32 +76,21 @@ monthly_payment = principal * (EMR * (1 + EMR) ** months) / ((1 + EMR) ** months
 print(f"Interest rate for the term will be {EMR * 100:.2f}%")
 print(f"Monthly payment amount is: ${monthly_payment:.2f}")
 
-# Calculate and print the amortization schedule
-
 amort_schedule = input("Would you like to see the amortization schedule? (Y/N): ").upper()
 if amort_schedule == "Y":
     print("             \nAmortization Schedule:") # Calculate and print the amortization schedule
     print("Month  Opening Balance  Monthly Payment  Monthly Principal  Monthly Interest  Closing Balance")
-opening_balance = principal
-for month in range(1, months + 1):
-    monthly_interest = opening_balance * EMR
-    monthly_principal = monthly_payment - monthly_interest
-    closing_balance = opening_balance - monthly_principal
+
+    opening_balance = principal
+    for month in range(1, months + 1):
+        monthly_interest = opening_balance * EMR
+        monthly_principal = monthly_payment - monthly_interest
+        closing_balance = opening_balance - monthly_principal
     
-    print(f"{month:3}  ${opening_balance:.2f}  ${monthly_payment:.2f}  ${monthly_principal:.2f}  ${monthly_interest:.2f}  ${closing_balance:.2f}")
+        print(f"{month:3}  ${opening_balance:.2f}  ${monthly_payment:.2f}  ${monthly_principal:.2f}  ${monthly_interest:.2f}  ${closing_balance:.2f}")
     
-    opening_balance = closing_balance
+        opening_balance = closing_balance
 else:
     print("Thank you, goodbye")
 
-
-
-
-
-
-
-#print (f"Effective Monthly Rate / Monthly Payment: {EMR} / {monthly_payment}")
-# print (name)
-# print (f"Minimum Downpayment / Percentage of House Price: {minimum_downpayment} / {minimum_downpayment_percentage}")
-# print (f"Insurance Premium / Insurance Cost: {insurance_premium} / {insurance_cost}")
-# print (f"Principal Amount: {principal}") 
+ 
