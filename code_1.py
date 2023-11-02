@@ -44,32 +44,36 @@ while amortization_period not in (5, 10, 15, 20, 25):
     print ("That is not a acceptable Amortization Period, please select one of the following: (5, 10, 15, 20, 25): ")
     amortization_period = int(input("What is the amortization period you want?(5, 10, 15, 20, 25): "))
 
-if amortization_period == 5:
-    mortgage_term = 1
+if  mortgage_term == 1:
+
     mortgage_rate = 0.0595
-elif amortization_period ==10: 
-    mortgage_term = 2
+
+elif mortgage_term ==2:
+
     mortgage_rate = 0.059
-elif amortization_period ==15:
-    mortgage_term = 3
+
+elif mortgage_term ==3:
+
     mortgage_rate = 0.056
-elif amortization_period ==20:
-    mortgage_term = 5
+
+elif mortgage_term ==5:
+
     mortgage_rate = 0.0529
+
 else:
-    mortgage_term = 10
+
     mortgage_rate = 0.06
 
-EMR = ((1 + (mortgage_rate / 2))**2)**(1/12) - 1
+EMR = (((1 + (mortgage_rate / 2))**2)**(1/12)) - 1
 
-months = 12* amortization_period 
+months = 12* mortgage_term 
 
 monthly_payment = "{:2f}".format(principal * ((EMR * ((1 + EMR)**months))/ (((1 + EMR)**months) - 1)))
 
 print(f"Interest rate for thr term will be {EMR}%")
 print(f"Monthly payment amount is: ${monthly_payment}")
 
-months = 12 * amortization_period
+months = 12 * mortgage_term
 
 # Calculate monthly payment
 monthly_payment = principal * (EMR * (1 + EMR) ** months) / ((1 + EMR) ** months - 1)
