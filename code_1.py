@@ -36,10 +36,10 @@ while mortgage_term not in (1, 2, 3, 5, 10):
     print ("That is not a acceptable mortgage term, please select one of the following: 1, 2, 3, 5, 10")
     mortgage_term = int(input("Enter mortgage term (1, 2, 3, 5, 10):"))
 
-amortization_period = int(input("Enter mortgage amortization period (5, 10, 15, 20, 25)"))
+amortization_period = int(input("Enter mortgage amortization period (5, 10, 15, 20, 25): "))
 
 while amortization_period not in (5, 10, 15, 20, 25):
-    print ("That is not a acceptable Amortization Period, please select one of the following: 5, 10, 15, 20, 25")
+    print ("That is not a acceptable Amortization Period, please select one of the following: (5, 10, 15, 20, 25): ")
     amortization_period = int(input("What is the amortization period you want?(5, 10, 15, 20, 25): "))
 
 if amortization_period == 5:
@@ -75,9 +75,10 @@ monthly_payment = principal * (EMR * (1 + EMR) ** months) / ((1 + EMR) ** months
 print(f"Interest rate for the term will be {EMR * 100:.2f}%")
 print(f"Monthly payment amount is: ${monthly_payment:.2f}")
 
-# Calculate and print the amortization schedule
-print("             \nAmortization Schedule:")
-print("Month  Opening Balance  Monthly Payment  Monthly Principal  Monthly Interest  Closing Balance")
+amort_schedule = input("Would you like to see the amortization schedule? (Y/N): ").upper()
+if amort_schedule == "Y":
+    print("             \nAmortization Schedule:") # Calculate and print the amortization schedule
+    print("Month  Opening Balance  Monthly Payment  Monthly Principal  Monthly Interest  Closing Balance")
 
 opening_balance = principal
 for month in range(1, months + 1):
@@ -88,6 +89,8 @@ for month in range(1, months + 1):
     print(f"{month:3}  ${opening_balance:.2f}  ${monthly_payment:.2f}  ${monthly_principal:.2f}  ${monthly_interest:.2f}  ${closing_balance:.2f}")
     
     opening_balance = closing_balance
+else:
+    print("Thank you, goodbye")
 
 
 
