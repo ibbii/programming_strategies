@@ -11,24 +11,24 @@ else:
 
 
 
-downpayment_percentage = (minimum_downpayment / house_price * 100) 
-downpayment = ((float(input(f"Enter down payment percentage (minimum {downpayment_percentage:.3f}): ")) / 100) * house_price) 
+minimum_downpayment_percentage = (minimum_downpayment / house_price * 100) 
+downpayment_percentage = float(input(f"Enter down payment percentage (minimum {minimum_downpayment_percentage:.3f}): "))
+downpayment = (downpayment_percentage / 100) * house_price 
 
 print(f"Down payment amount is ${downpayment}") 
 
 if downpayment_percentage < 10: 
-    insurance_premium = 0.04
-elif downpayment_percentage < 15:
-    insurance_premium = 0.031
-elif downpayment_percentage < 20:
-    insurance_premium = 0.028
+    insurance_premium = 4
+elif downpayment_percentage < 14:
+    insurance_premium = 3.1
+elif downpayment_percentage < 19:
+    insurance_premium = 2.8
 else:
     insurance_premium = 0
-
-insurance_cost = (house_price - minimum_downpayment) * insurance_premium 
+insurance_cost = (house_price - downpayment) * (insurance_premium / 100)
 print(f"Mortgage insurance price is {insurance_cost}")
 
-principal = house_price - minimum_downpayment + insurance_cost
+principal = house_price - downpayment + insurance_cost
 print(f"Total mortgage amount is ${principal}")
 
 mortgage_term = int(input("Enter mortgage term (1, 2, 3, 5, 10): "))
@@ -44,45 +44,29 @@ while amortization_period not in (5, 10, 15, 20, 25):
     amortization_period = int(input("What is the amortization period you want?(5, 10, 15, 20, 25): "))
 
 if  mortgage_term == 1:
-
     mortgage_rate = 0.0595
-
-elif mortgage_term ==2:
-
+elif mortgage_term == 2: 
     mortgage_rate = 0.059
-
-elif mortgage_term ==3:
-
+elif mortgage_term == 3:
     mortgage_rate = 0.056
-
-elif mortgage_term ==5:
-
+elif mortgage_term == 5:
     mortgage_rate = 0.0529
-
 else:
-
     mortgage_rate = 0.06
 
 EMR = (((1 + (mortgage_rate / 2))**2)**(1/12)) - 1
 
-months = 12* mortgage_term 
-
-monthly_payment = "{:2f}".format(principal * ((EMR * ((1 + EMR)**months))/ (((1 + EMR)**months) - 1)))
-
-print(f"Interest rate for thr term will be {EMR}%")
-print(f"Monthly payment amount is: ${monthly_payment}")
-
 months = 12 * mortgage_term
 
 # Calculate monthly payment
-monthly_payment = principal * (EMR * (1 + EMR) ** months) / ((1 + EMR) ** months - 1)
+monthly_payment = principal * (EMR * (1 + EMR) ** months) / (((1 + EMR) ** months) - 1)
 
 print(f"Interest rate for the term will be {EMR * 100:.2f}%")
 print(f"Monthly payment amount is: ${monthly_payment:.2f}")
 
 amort_schedule = input("Would you like to see the amortization schedule? (Y/N): ").upper()
 if amort_schedule == "Y":
-    print("             \nAmortization Schedule:") # Calculate and print the amortization schedule
+    print("\nAmortization Schedule:") # Calculate and print the amortization schedule
     print("Month  Opening Balance  Monthly Payment  Monthly Principal  Monthly Interest  Closing Balance")
 
     opening_balance = principal
