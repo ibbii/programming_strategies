@@ -58,30 +58,24 @@ while mortgage_term not in (1, 2, 3, 5, 10):
 
 amortization_period = int(input("Enter mortgage amortization period (5, 10, 15, 20, 25): "))
 
-while amortization_period not in (5, 10, 15, 20, 25):
+while amortization_period not in (5, 10, 15, 20, 25): 
 
     print ("That is not a acceptable Amortization Period, please select one of the following: 5, 10, 15, 20, 25")
 
     amortization_period = int(input("What is the amortization period you want?(5, 10, 15, 20, 25): "))
 
 if  mortgage_term == 1:
-
     mortgage_rate = 0.0595
 
 elif mortgage_term == 2:
-
     mortgage_rate = 0.059
 
 elif mortgage_term == 3:
-
     mortgage_rate = 0.056
 
 elif mortgage_term == 5:
-
     mortgage_rate = 0.0529
-
 else:
-
     mortgage_rate = 0.06
 
 EMR = ((1 + mortgage_rate / 2)**2)**(1/12) - 1
@@ -114,7 +108,6 @@ if amort_schedule == "Y":
 
     for month in range(1, months + 1):
         
-
         monthly_interest = opening_balance * EMR
 
         monthly_principal = monthly_payment - monthly_interest
@@ -125,8 +118,6 @@ if amort_schedule == "Y":
 
         add_inter = add_inter + monthly_interest
 
-        
-    
         print(f"{month:>3}  {opening_balance:>17.2f}  {monthly_payment:>15.2f}  {monthly_principal:>17.2f}  {monthly_interest:>16.2f}  {closing_balance:>15.2f}")
     
         opening_balance = closing_balance
